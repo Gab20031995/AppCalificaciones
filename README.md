@@ -25,7 +25,7 @@ Este proyecto es una sencilla aplicación web para el registro y consulta de cal
 
 ## **🛠️ Tecnologías Utilizadas**
 
-* **Python**  
+* **Python: Lenguaje base para este proyecto.**  
 * **Streamlit:** Para la interfaz de usuario web interactiva.  
 * **SQLAlchemy:** ORM para interactuar con la base de datos.  
 * **mysql-connector-python:** Conector Python para MySQL.  
