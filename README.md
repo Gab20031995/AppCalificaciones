@@ -1,3 +1,16 @@
+![LOGO ULEAD](https://github.com/user-attachments/assets/6f54a45a-9049-4952-8bd9-ffe2d4983bf3)
+
+# **2025- II Programación Web**
+# **Entregable grupal #2**
+
+## Profesor: Alejandro Zamora Esquivel
+
+Alumnos:
+- Gabriel Corrales Mora.
+- Jeralin Mayerlin Flores Hernández.
+- Jean Rabbat Sánchez.
+
+
 # **📘 Aplicación de Registro de Calificaciones**
 
 Este proyecto es una sencilla aplicación web para el registro y consulta de calificaciones de estudiantes, construida utilizando **Streamlit** para la interfaz de usuario y **SQLAlchemy** con **MySQL** (gestionado a través de Docker) para la persistencia de datos.
@@ -12,7 +25,7 @@ Este proyecto es una sencilla aplicación web para el registro y consulta de cal
 
 ## **🛠️ Tecnologías Utilizadas**
 
-* **Python 3.x**  
+* **Python: Lenguaje base para este proyecto.**  
 * **Streamlit:** Para la interfaz de usuario web interactiva.  
 * **SQLAlchemy:** ORM para interactuar con la base de datos.  
 * **mysql-connector-python:** Conector Python para MySQL.  
@@ -36,7 +49,7 @@ Sigue estos pasos para poner en marcha el proyecto en tu máquina local:
 
 Abre tu terminal o línea de comandos y clona el proyecto:
 
-git clone https://github.com/tu-usuario/AppCalificaciones.git \# Reemplaza con la URL real de tu repo  
+`git clone https://github.com/tu-usuario/AppCalificaciones.git` \# Reemplaza con la URL real de tu repo  
 cd AppCalificaciones
 
 ### **2\. Configurar la Base de Datos con Docker**
@@ -45,16 +58,16 @@ Utilizaremos Docker para ejecutar una instancia de MySQL.
 
 \# Para iniciar el contenedor MySQL (asegúrate de que no haya otro MySQL en el puerto 3307\)  
 \# Esto crea un contenedor llamado 'local-mysql' que mapea el puerto 3307 de tu host al 3306 del contenedor.  
-docker run \--name local-mysql \-e MYSQL\_ROOT\_PASSWORD=123Queso. \-p 3307:3306 \-d mysql/mysql-server:latest
+`docker run \--name local-mysql \-e MYSQL\_ROOT\_PASSWORD=123Queso. \-p 3307:3306 \-d mysql/mysql-server:latest`
 
 **Nota Importante:**
 
-* La contraseña de root para MySQL dentro del contenedor se establece como 123Queso.. Si quieres cambiarla, asegúrate de actualizarla tanto en el comando docker run como en el archivo database.py.  
+* La contraseña de root para MySQL dentro del contenedor se establece como `123Queso.`. Si quieres cambiarla, asegúrate de actualizarla tanto en el comando docker run como en el archivo database.py.  
 * Si el puerto 3307 ya está en uso en tu máquina, cámbialo en el comando Docker (ej. \-p 3308:3306) y luego asegúrate de reflejar ese cambio en database.py.
 
 Puedes verificar que el contenedor está corriendo con:
 
-docker ps
+`docker ps`
 
 Deberías ver local-mysql en la lista con estado Up.
 
@@ -63,16 +76,16 @@ Deberías ver local-mysql en la lista con estado Up.
 Es altamente recomendable usar un entorno virtual para gestionar las dependencias del proyecto.
 
 \# Crear un entorno virtual  
-python \-m venv venv
+`python \-m venv venv`
 
 \# Activar el entorno virtual  
 \# En Windows:  
-.\\venv\\Scripts\\activate  
+`.\\venv\\Scripts\\activate`  
 \# En macOS/Linux:  
-source venv/bin/activate
+`source venv/bin/activate`
 
 \# Instalar las dependencias  
-pip install \-r requirements.txt
+`pip install \-r requirements.txt`
 
 ### **4\. Configuración del Archivo database.py**
 
@@ -82,11 +95,11 @@ Abre el archivo database.py y asegúrate de que los detalles de conexión coinci
 
 \# database.py  
 \# ...  
-DB\_USER \= "root"  
-DB\_PASSWORD \= "123Queso."  \# Asegúrate de que coincida con la de tu contenedor Docker  
-DB\_HOST \= "localhost"  
-DB\_PORT \= "3307"          \# ¡IMPORTANTE\! Debe coincidir con el mapeo de puerto de Docker  
-DB\_NAME \= "calificaciones\_db"  
+`DB\_USER \= "root"`  
+`DB\_PASSWORD \= "123Queso."`  \# Asegúrate de que coincida con la de tu contenedor Docker  
+`DB\_HOST \= "localhost"`  
+`DB\_PORT \= "3307"`          \# ¡IMPORTANTE\! Debe coincidir con el mapeo de puerto de Docker  
+`DB\_NAME \= "calificaciones\_db"`  
 \# ...
 
 El script database.py automáticamente creará la base de datos calificaciones\_db si no existe al iniciar la aplicación.
@@ -110,16 +123,4 @@ AppCalificaciones/
 └── logo.png                \# (Opcional) Imagen utilizada en la UI  
 └── venv/                   \# Entorno virtual de Python (ignorado por Git)
 
-## **🤝 Contribuciones**
 
-¡Las contribuciones son bienvenidas\! Si deseas mejorar este proyecto, por favor:
-
-1. Haz un "fork" del repositorio.  
-2. Crea una nueva rama (git checkout \-b feature/nueva-funcionalidad).  
-3. Realiza tus cambios y haz "commit" (git commit \-m 'feat: Añadir nueva funcionalidad').  
-4. Sube tus cambios (git push origin feature/nueva-funcionalidad).  
-5. Abre un "Pull Request".
-
-## **📄 Licencia**
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
