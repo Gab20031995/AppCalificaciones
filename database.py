@@ -44,4 +44,3 @@ Session = sessionmaker(bind=engine)
 
 def crear_tablas():
     Base.metadata.create_all(engine)
-

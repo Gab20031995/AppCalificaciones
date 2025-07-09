@@ -7,16 +7,19 @@ import pandas as pd
 # Crear las tablas si no existen
 crear_tablas()
 
-# Titulo del formulario
-
-col1, col2, col3 = st.columns([1, 2, 1]) 
+# Título del formulario
+col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     st.image("images\logo_lead_grande.png", width=600)
 st.title("📘 Registro de Calificaciones")
 st.write("---")
+if 'form_key' not in st.session_state:
+    st.session_state['form_key'] = 0
+if 'show_success_message' not in st.session_state:
+    st.session_state['show_success_message'] = False
 
 # Formulario de ingreso de notas
-with st.form("registro_formulario"):
+with st.form(key=f"registro_formulario_{st.session_state['form_key']}"):
     nombre = st.text_input("Nombre del estudiante")
     matricula = st.text_input("Matrícula / ID")
     curso = st.selectbox("Curso", ["Calculo 1", "Programación Web", "Base de datos", "Economía para Ingenieros", "Ética"])
@@ -38,13 +41,22 @@ with st.form("registro_formulario"):
         session.add(nueva_calificacion)
         session.commit()
         session.close()
-        st.success("✅ Registro guardado correctamente.")
+        st.session_state['show_success_message'] = True
+        st.session_state['form_key'] += 1
+        st.rerun()
+
+# Mostrar el mensaje de éxito si el estado lo indica
+if st.session_state['show_success_message']:
+    st.success("✅ Registro guardado correctamente.")
+    if st.button("Aceptar"):
+        st.session_state['show_success_message'] = False
+        st.rerun()
 
 st.divider()
 
 # Base de datos
 st.subheader("🔍 Calificaciones registradas")
-filtro_curso = st.selectbox("Filtrar por curso", ["Todos", "Matemáticas", "Inglés", "Historia", "Ciencias", "Educación Física"])
+filtro_curso = st.selectbox("Filtrar por curso", ["Todos", "Calculo 1", "Programación Web", "Base de datos", "Economía para Ingenieros", "Ética"])
 filtro_nombre = st.text_input("Filtrar por nombre del estudiante")
 
 # Mostrar registros
