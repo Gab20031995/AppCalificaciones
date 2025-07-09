@@ -15,6 +15,9 @@ Alumnos:
 
 Este proyecto es una sencilla aplicación web para el registro y consulta de calificaciones de estudiantes, construida utilizando **Streamlit** para la interfaz de usuario y **SQLAlchemy** con **MySQL** (gestionado a través de Docker) para la persistencia de datos.
 
+## **DEMO:**
+[![Demo del proyecto](https://img.youtube.com/vi/sA6MfUVgCr4/maxresdefault.jpg)](https://youtu.be/sA6MfUVgCr4)
+
 ## **✨ Características**
 
 * **Registro de Calificaciones:** Permite ingresar nuevas calificaciones con información detallada como nombre del estudiante, matrícula, curso, fecha, nota y observaciones.  
