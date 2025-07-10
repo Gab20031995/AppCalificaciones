@@ -3,6 +3,9 @@ from datetime import date
 from database import Calificacion, Session, crear_tablas
 from sqlalchemy import select
 import pandas as pd
+import os
+import matplotlib.pyplot as plt
+import plotly.express as px
 
 # Crear las tablas si no existen
 crear_tablas()
@@ -10,7 +13,7 @@ crear_tablas()
 # Título del formulario
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
-    st.image("images\logo_lead_grande.png", width=600)
+    st.image(os.path.join("images","logo_lead_grande.png"), width=600)
 st.title("📘 Registro de Calificaciones")
 st.write("---")
 if 'form_key' not in st.session_state:
@@ -44,6 +47,9 @@ with st.form(key=f"registro_formulario_{st.session_state['form_key']}"):
         st.session_state['show_success_message'] = True
         st.session_state['form_key'] += 1
         st.rerun()
+        
+    if not nombre or not matricula:
+        st.warning("Por favor, completa todos los campos obligatorios antes de guardar.")
 
 # Mostrar el mensaje de éxito si el estado lo indica
 if st.session_state['show_success_message']:
@@ -82,3 +88,29 @@ df = pd.DataFrame([{
 } for r in resultados])
 
 st.dataframe(df, use_container_width=True)
+
+
+# Gráfico de calificaciones
+
+# Consultar base de datos
+session = Session()
+resultados = session.execute(select(Calificacion)).scalars().all()
+
+if resultados:
+    # Convertir resultados a DataFrame
+    df = pd.DataFrame([{
+        "Nombre": r.nombre_estudiante,
+        "Curso": r.curso,
+        "Nota": r.nota,
+        "Fecha": r.fecha
+    } for r in resultados])
+
+    st.subheader("📊 Promedio de notas por estudiante")
+
+    # Agrupar por estudiante y sacar promedio
+    promedio_estudiantes = df.groupby("Nombre")["Nota"].mean()
+
+
+fig = px.line(df, x="Fecha", y="Nota", color="Nombre", markers=True,
+              title="Evolución de calificaciones por estudiante")
+st.plotly_chart(fig)
