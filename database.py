@@ -4,9 +4,9 @@ import mysql.connector
 
 # Configuración de la base de datos, Validar segun sea el caso
 DB_USER = "root"
-DB_PASSWORD = "Jer123456789"  # Validar contraseña
+DB_PASSWORD = "123Queso."  # Validar contraseña
 DB_HOST = "localhost"
-DB_PORT = "3306" # Validar puerto
+DB_PORT = "3307" # Validar puerto
 DB_NAME = "calificaciones_db"
 
 # Crear la base de datos en caso de que no exista
